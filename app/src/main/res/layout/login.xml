@@ -27,7 +27,8 @@
         android:layout_alignStart="@+id/editText2"
         android:layout_alignRight="@+id/editText2"
         android:layout_alignEnd="@+id/editText2"
-        android:hint="id" />
+        android:hint="id"
+        android:inputType="number" />
 
     <ImageView
         android:layout_width="wrap_content"

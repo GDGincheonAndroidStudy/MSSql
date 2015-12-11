@@ -27,7 +27,8 @@ public class login extends Activity {
     Button login;
     int identify = 0;
     DataStorage dataStorage = new DataStorage();
-//데이터넣는거
+
+    //데이터넣는거
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +68,7 @@ public class login extends Activity {
 
 
     }
+
     //내가 연결한 code의 position을 가지고 조인된 값 불러오기
     public class MssqlTask extends AsyncTask<String, Integer, ArrayList<String>> {
 
@@ -81,20 +83,20 @@ public class login extends Activity {
                 Statement stmt = conn.createStatement();
 
                 ResultSet reset = stmt.executeQuery("select * from NEW_student");
-                while(reset.next()) {
+                while (reset.next()) {
                     Student_code.add(i, reset.getString(1));
                     Student_passwd.add(i, reset.getString(4));
-                    Log.e("whiletest"+i, reset.getString(1));
-                    Log.e("whiletest"+i, reset.getString(4));
+                    Log.e("whiletest" + i, reset.getString(1));
+                    Log.e("whiletest" + i, reset.getString(4));
                     i++;
                 }//datastorage에 저장이 안되는거
-                Log.e("branch1","branch1");
-                if(Student_code.size() > 0 ){
+                Log.e("branch1", "branch1");
+                if (Student_code.size() > 0) {
                     dataStorage.getInstance().setstudent_code(Student_code);
                     //dataStorage.getM_instance().setstudent_code(Student_code);
-                    Log.e("data1","ㅗㅗㅗ");
-                }else {
-                    Log.e("data","데이터 저장 실패");
+                    Log.e("data1", "ㅗㅗㅗ");
+                } else {
+                    Log.e("data", "데이터 저장 실패");
                 }
 
                 reset.close();
@@ -113,8 +115,6 @@ public class login extends Activity {
             super.onPostExecute(s);
         }
     }
-
-
 
 
 }
