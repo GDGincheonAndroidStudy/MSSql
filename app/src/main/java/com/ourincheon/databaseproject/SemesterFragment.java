@@ -24,7 +24,7 @@ public class SemesterFragment extends android.support.v4.app.Fragment {
     private int positions;
 
 
-    public static SemesterFragment newInstanse(int position){
+ /*   public static SemesterFragment newInstanse(int position){
         SemesterFragment f = new SemesterFragment();
         Bundle b = new Bundle();
         b.putInt(ARG_POSITION, position);
@@ -33,11 +33,13 @@ public class SemesterFragment extends android.support.v4.app.Fragment {
     }
     //       Layout을 inflater을하여 View작업을 하는 곳.
 
+*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        positions = getArguments().getInt(ARG_POSITION);
+      //  positions = getArguments().getInt(ARG_POSITION);
+        positions = 1;
     }
 
     @Override
@@ -51,7 +53,7 @@ public class SemesterFragment extends android.support.v4.app.Fragment {
 //   Fragment에서는 this대신에 getActivity를 통해 해당 Activity를 넘겨준다.
         adapter = new PagerAdapter(getActivity().getSupportFragmentManager());
         View rootView;
-        rootView = inflater.inflate(R.layout.list, container, false);
+        rootView = inflater.inflate(R.layout.list, null);
         ListView listView = (ListView) rootView.findViewById(R.id.semesterList);
         List1 list = new List1(getActivity());
         listView.setAdapter(list);

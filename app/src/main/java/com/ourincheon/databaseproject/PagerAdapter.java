@@ -16,7 +16,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return SemesterFragment.newInstanse(position);
+        return new SemesterFragment();
     }
 
     public CharSequence getPageTitle(int position){

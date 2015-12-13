@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(dataStorage.getInstance().getMainList().get(5));
         arrayList.add(dataStorage.getInstance().getMainList().get(6));
 
-
         initview(grade1);
         setListener();
 
