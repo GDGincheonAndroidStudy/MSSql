@@ -1,6 +1,7 @@
 package com.ourincheon.databaseproject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Youngdo on 2015-11-02.
  */
@@ -23,8 +27,8 @@ public class SemesterFragment extends android.support.v4.app.Fragment {
     private static final String ARG_POSITION = "position";
     private int positions;
 
-
- /*   public static SemesterFragment newInstanse(int position){
+    private ArrayList<String> arrayList = new ArrayList<>();
+   public static SemesterFragment newInstanse(int position){
         SemesterFragment f = new SemesterFragment();
         Bundle b = new Bundle();
         b.putInt(ARG_POSITION, position);
@@ -33,12 +37,15 @@ public class SemesterFragment extends android.support.v4.app.Fragment {
     }
     //       Layout을 inflater을하여 View작업을 하는 곳.
 
-*/
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
       //  positions = getArguments().getInt(ARG_POSITION);
+        for(int a=0; 100>a;a++){
+            arrayList.add(String.valueOf(a+1));
+        }
         positions = 1;
     }
 
@@ -55,37 +62,46 @@ public class SemesterFragment extends android.support.v4.app.Fragment {
         View rootView;
         rootView = inflater.inflate(R.layout.list, null);
         ListView listView = (ListView) rootView.findViewById(R.id.semesterList);
-        List1 list = new List1(getActivity());
+        List1 list = new List1(getActivity(),arrayList);
         listView.setAdapter(list);
         return rootView;
-
-
     }
 
     public class List1 extends ArrayAdapter<String>{
         private final Activity context;
 
+        private ArrayList<String> items;
 
-        public List1(Activity context) {
-            super(context, R.layout.itemlist);
+        public List1(Activity context,ArrayList<String> arrlist)
+        {
+            super(context, R.layout.itemlist,arrlist);
+            this.items = arrlist;
             this.context = context;
         }
+        ///
+        ///여기서 초기화 할때 arrList!
+        ////!!!
 
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = context.getLayoutInflater();
-            View rowView = inflater.inflate(R.layout.itemlist,null, true);
-            ImageView imageView = (ImageView) rowView.findViewById(R.id.image);
-            TextView title = (TextView) rowView.findViewById(R.id.title);
-            TextView manufac = (TextView) rowView.findViewById(R.id.manufac);
-            TextView price = (TextView) rowView.findViewById(R.id.price);
+
+            View v = convertView;
+            v = inflater.inflate(R.layout.itemlist,null);
+            ImageView imageView = (ImageView) v.findViewById(R.id.image);
+            TextView title = (TextView) v.findViewById(R.id.title);
+            TextView manufac = (TextView) v.findViewById(R.id.manufac);
+            TextView price = (TextView) v.findViewById(R.id.price);
             title.setTextSize(30);
-            title.setText("ㅗㅗ");
+            title.setText("ㅗㅗ" + items.get(position));
+
             manufac.setTextSize(10);
             manufac.setText("ㅗㅗ");
-            return rowView;
+            return v;
         }
+
+
     }
 
 
